@@ -1,3 +1,4 @@
+package Succursale;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -17,10 +18,6 @@ public class Succursale {
 		connecter();
 	}
 
-	public Succursale() {
-		System.out.println("Bonjour suc");
-		connecter();
-	}
 	public int getIdSucc() {
 		return idSucc;
 	}
