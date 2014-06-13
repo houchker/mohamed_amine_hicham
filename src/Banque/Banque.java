@@ -4,12 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import model.MSuccursale;
 import Util.Cts;
 
@@ -18,7 +15,6 @@ import Util.Cts;
 public class Banque implements Runnable {
 
 	private ArrayList<MSuccursale> succursales;
-	private int montantTotal = 0;
 	private BufferedReader in;
 	private PrintWriter out;
 	static ServerSocket serverSocket = null;
