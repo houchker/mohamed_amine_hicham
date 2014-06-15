@@ -18,11 +18,12 @@ public class GestionnaireConnexionBanque implements Runnable {
 	private PrintWriter out = null;
 	private String login = "zero";
 	private Thread t3, t4;
+	private interfaceBanque interfaceBanque;
 	
 	
-	public GestionnaireConnexionBanque(Socket s){
-		
-		socket = s;
+	public GestionnaireConnexionBanque(Socket s, interfaceBanque interfaceBanque){
+		this.interfaceBanque =  interfaceBanque;
+		this.socket = s;
 		//login = log;
 	}
 	public void run() {
@@ -38,9 +39,11 @@ public class GestionnaireConnexionBanque implements Runnable {
 			switch (commandeType){
 			case Cts.AJOUT_SUCCURSALE :
 				s = new Succursale(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3]));
-				int idS = BanqueO.getInstance().AddSuccursale(s);
-				s.setIdSucc(idS);
-				out.println (Cts.NEWIDSUCC+"#"+idS);
+				s.setIdSucc(BanqueO.getInstance(interfaceBanque).getCounter());
+				BanqueO.getInstance(interfaceBanque).AddSuccursale(s);
+				System.out.println("ID succu new " + s.toString());
+				out.println (Cts.NEWIDSUCC+"#"+s.getIdSucc());
+				
 				break;
 			default:
 				System.out.println("Commande introuvable!");
@@ -48,9 +51,9 @@ public class GestionnaireConnexionBanque implements Runnable {
 			}
 		}
 		
-		Thread t3 = new Thread(new ReceptionBanque(in,login , s));
+		Thread t3 = new Thread(new ReceptionBanque(in,login , s ,interfaceBanque ));
 		t3.start();
-		Thread t4 = new Thread(new EmissionBanque(out, s));
+		Thread t4 = new Thread(new EmissionBanque(out, s , interfaceBanque));
 		t4.start();
 		
 		} catch (IOException e) {

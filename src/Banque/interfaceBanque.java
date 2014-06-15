@@ -20,6 +20,7 @@ public class interfaceBanque extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static interfaceBanque instance;
 	JList list;
 	DefaultListModel model;
 	private JLabel TotalLabel;
@@ -75,6 +76,12 @@ public class interfaceBanque extends JFrame {
 	}	
 	public void setMontantTotal(int v){
 		TotalLabel.setText("Somme totale d\u2019argent : " + v + " $");
+	}
+	
+	public static interfaceBanque getInstance(){
+		if(instance ==null)
+				new interfaceBanque();
+		return instance;
 	}
 	
 	

@@ -11,8 +11,10 @@ public class EmissionBanque implements Runnable {
 	private PrintWriter out;
 	private String message = null;
 	private Scanner sc = null;
+	private interfaceBanque interfaceBanque;
 	
-	public EmissionBanque(PrintWriter out, Succursale s) {
+	public EmissionBanque(PrintWriter out, Succursale s, interfaceBanque interfaceBanque) {
+		this.interfaceBanque = interfaceBanque;
 		this.out = out;
 	}
 

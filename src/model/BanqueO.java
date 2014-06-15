@@ -8,24 +8,27 @@ import Banque.interfaceBanque;
 public class BanqueO {
 	private ArrayList<Succursale> succursales;
 	private interfaceBanque interfaceBanque;
+	private int count = 0;
 	private static BanqueO instance;
-	public BanqueO(){
+	public BanqueO(interfaceBanque interfaceBanque){
+		this.interfaceBanque = interfaceBanque;
 		succursales = new ArrayList<Succursale>();
-		interfaceBanque = new interfaceBanque();
-		interfaceBanque.setVisible(true);
 	}
-	public synchronized int AddSuccursale(Succursale s){
+	public synchronized void AddSuccursale(Succursale s){
 		succursales.add(s);
 		interfaceBanque.updateSuccursalesList(succursales);
-		return succursales.size();
+		System.out.println("AddSuccursale" + s.toString());
 	}
 
+	public int getCounter(){
+		return count ++;
+	}
 	public synchronized ArrayList<Succursale> getSuccursales(){
 		return succursales;
 	}
-	public static BanqueO getInstance (){
+	public static BanqueO getInstance (interfaceBanque interfaceBanque){
 		if(instance == null)
-			instance = new BanqueO();
+			instance = new BanqueO(interfaceBanque);
 		return instance;
 	}
 	
