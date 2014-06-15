@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import model.BanqueO;
-import model.SuccursaleO;
 import Succursale.Succursale;
 import Util.Cts;
 
@@ -29,7 +28,7 @@ public class ReceptionBanque implements Runnable {
 				int commandeType = Integer.valueOf(succursaleCommandes[0]);
 				switch (commandeType){
 				case Cts.AJOUT_SUCCURSALE :
-					BanqueO.getInstance().AddSuccursale(new SuccursaleO(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3])));
+					BanqueO.getInstance().AddSuccursale(new Succursale(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3])));
 					break;
 				default:
 					System.out.println("Commande introuvable!");

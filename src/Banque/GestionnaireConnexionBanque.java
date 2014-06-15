@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import model.BanqueO;
-import model.SuccursaleO;
 import Succursale.Succursale;
 import Util.Cts;
 

@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -13,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Succursale.Succursale;
-import model.SuccursaleO;
 
 
 public class interfaceBanque extends JFrame {
@@ -66,8 +64,15 @@ public class interfaceBanque extends JFrame {
 		for(Succursale s : succursales)
 			model.addElement(s.toString());
 
+		updateMontantTotal(succursales);
 	}
 	
+	public void updateMontantTotal(ArrayList<Succursale> succursales){
+		int total = 0;
+		for(Succursale s : succursales)
+			total += s.getMontantDepart();
+		TotalLabel.setText("Somme totale d\u2019argent : " + total + " $");
+	}	
 	public void setMontantTotal(int v){
 		TotalLabel.setText("Somme totale d\u2019argent : " + v + " $");
 	}

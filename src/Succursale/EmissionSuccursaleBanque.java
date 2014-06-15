@@ -1,11 +1,9 @@
 package Succursale;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 import Util.Cts;
-import model.SuccursaleO;
 
 
 public class EmissionSuccursaleBanque implements Runnable {

@@ -3,8 +3,6 @@ package Succursale;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import model.BanqueO;
-import model.SuccursaleO;
 import Util.Cts;
 
 

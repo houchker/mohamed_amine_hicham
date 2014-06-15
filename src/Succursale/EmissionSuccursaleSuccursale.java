@@ -1,10 +1,7 @@
 package Succursale;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
-import model.SuccursaleO;
 
 
 public class EmissionSuccursaleSuccursale implements Runnable {
@@ -13,7 +10,7 @@ public class EmissionSuccursaleSuccursale implements Runnable {
 	private String message = null;
 	private Scanner sc = null;
 	
-	public EmissionSuccursaleSuccursale(PrintWriter out, SuccursaleO s) {
+	public EmissionSuccursaleSuccursale(PrintWriter out, Succursale s) {
 		this.out = out;
 	}
 

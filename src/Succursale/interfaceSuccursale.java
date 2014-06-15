@@ -5,14 +5,11 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import model.SuccursaleO;
 
 
 public class interfaceSuccursale extends JFrame {
@@ -59,9 +56,9 @@ public class interfaceSuccursale extends JFrame {
 
 	}
 
-	public void updateSuccursalesList(ArrayList<SuccursaleO> succursales){
+	public void updateSuccursalesList(ArrayList<Succursale> succursales){
 		model.clear();
-		for(SuccursaleO s : succursales)
+		for(Succursale s : succursales)
 			model.addElement(s.toString());
 
 	}
