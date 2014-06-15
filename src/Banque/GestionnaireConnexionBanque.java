@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import model.BanqueO;
+import model.SuccursaleBean;
 import Succursale.Succursale;
 import Util.Cts;
 
@@ -32,13 +33,13 @@ public class GestionnaireConnexionBanque implements Runnable {
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream());
 		String commandLine;
-		Succursale s = null;
+		SuccursaleBean s = null;
 		while ((commandLine = in.readLine()) != null){
 			String[] succursaleCommandes = commandLine.split("#");
 			int commandeType = Integer.valueOf(succursaleCommandes[0]);
 			switch (commandeType){
 			case Cts.AJOUT_SUCCURSALE :
-				s = new Succursale(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3]));
+				s = new SuccursaleBean(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3]));
 				s.setIdSucc(BanqueO.getInstance(interfaceBanque).getCounter());
 				BanqueO.getInstance(interfaceBanque).AddSuccursale(s);
 				System.out.println("ID succu new " + s.toString());

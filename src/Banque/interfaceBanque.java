@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.SuccursaleBean;
 import Succursale.Succursale;
 
 
@@ -53,24 +54,24 @@ public class interfaceBanque extends JFrame {
 		panel.add(TotalLabel);
 		getContentPane().add(pane, BorderLayout.NORTH);
 		setTitle("Tooltip");
-		setSize(596, 600);
+		setSize(596, 373);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 	}
 	
-	public void updateSuccursalesList(ArrayList<Succursale> succursales){
+	public void updateSuccursalesList(ArrayList<SuccursaleBean> succursales){
 		model.clear();
-		for(Succursale s : succursales)
+		for(SuccursaleBean s : succursales)
 			model.addElement(s.toString());
 
 		updateMontantTotal(succursales);
 	}
 	
-	public void updateMontantTotal(ArrayList<Succursale> succursales){
+	public void updateMontantTotal(ArrayList<SuccursaleBean> succursales){
 		int total = 0;
-		for(Succursale s : succursales)
+		for(SuccursaleBean s : succursales)
 			total += s.getMontantDepart();
 		TotalLabel.setText("Somme totale d\u2019argent : " + total + " $");
 	}	

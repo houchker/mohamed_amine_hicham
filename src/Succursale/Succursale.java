@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import model.SuccursaleBean;
+import Banque.interfaceBanque;
 import Util.Cts;
 
 
@@ -18,7 +20,18 @@ public class Succursale implements Runnable {
 	private BufferedReader in;
 	private PrintWriter out;
 	private Socket echoSocket;
+	public SuccursaleBean getSuccursaleBean() {
+		return succursaleBean;
+	}
 
+	public void setSuccursaleBean(SuccursaleBean succursaleBean) {
+		this.succursaleBean = succursaleBean;
+	}
+
+
+	private interfaceSuccursale interfaceSuccursale;
+	private SuccursaleBean succursaleBean;
+	
 	public int getMontantDepart() {
 		return montantDepart;
 	}
@@ -39,13 +52,10 @@ public class Succursale implements Runnable {
 		this.montant = montantDepart;
 	}
 
-	public Succursale(String ip, int portEcoute, int montantDepart) {
-		this.ip = ip;
-		this.port = portEcoute;
-		this.montantDepart = montantDepart;
-		this.montant = montantDepart;
+	public Succursale(SuccursaleBean succursaleBean2) {
+		this.succursaleBean = succursaleBean2;
+		interfaceSuccursale = new interfaceSuccursale(succursaleBean2);
 	}
-
 
 	public int getIdSucc() {
 		return idSucc;
@@ -66,6 +76,14 @@ public class Succursale implements Runnable {
 	public String toString() {
 		return "ID Succ : " + getIdSucc() + "| Port:" + getPortEcoute() + "| Montant Ini:" + getMontantDepart() + "| Solde:"+getSolde();
 	}
+	public String toString2() {
+		return "ID Succ:" + getIdSucc() + "|Port:" + getPortEcoute();
+	}
+	
+	public interfaceSuccursale getInterfaceSuccursale() {
+		return interfaceSuccursale;
+	}
+
 
 	@Override
 	public void run() {

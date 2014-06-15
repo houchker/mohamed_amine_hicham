@@ -27,7 +27,8 @@ public class ReceptionSuccursaleBanque implements Runnable {
 				switch (commandeType){
 				case Cts.NEWIDSUCC :
 					System.out.println("ID Recu");
-					succursale.setIdSucc(Integer.valueOf(succursaleCommandes[1]));
+					succursale.getSuccursaleBean().setIdSucc(Integer.valueOf(succursaleCommandes[1]));
+					succursale.getSuccursaleBean().getInterfaceSuccursale().refesh();
 					break;
 				default:
 					System.out.println("Commande introuvable!");

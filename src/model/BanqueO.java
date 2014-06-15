@@ -6,15 +6,15 @@ import Succursale.Succursale;
 import Banque.interfaceBanque;
 
 public class BanqueO {
-	private ArrayList<Succursale> succursales;
+	private ArrayList<SuccursaleBean> succursales;
 	private interfaceBanque interfaceBanque;
 	private int count = 0;
 	private static BanqueO instance;
 	public BanqueO(interfaceBanque interfaceBanque){
 		this.interfaceBanque = interfaceBanque;
-		succursales = new ArrayList<Succursale>();
+		succursales = new ArrayList<SuccursaleBean>();
 	}
-	public synchronized void AddSuccursale(Succursale s){
+	public synchronized void AddSuccursale(SuccursaleBean s){
 		succursales.add(s);
 		interfaceBanque.updateSuccursalesList(succursales);
 		System.out.println("AddSuccursale" + s.toString());
@@ -23,7 +23,7 @@ public class BanqueO {
 	public int getCounter(){
 		return count ++;
 	}
-	public synchronized ArrayList<Succursale> getSuccursales(){
+	public synchronized ArrayList<SuccursaleBean> getSuccursales(){
 		return succursales;
 	}
 	public static BanqueO getInstance (interfaceBanque interfaceBanque){

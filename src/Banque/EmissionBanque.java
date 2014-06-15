@@ -3,6 +3,7 @@ package Banque;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import model.SuccursaleBean;
 import Succursale.Succursale;
 
 
@@ -12,10 +13,12 @@ public class EmissionBanque implements Runnable {
 	private String message = null;
 	private Scanner sc = null;
 	private interfaceBanque interfaceBanque;
+	private SuccursaleBean succursale;
 	
-	public EmissionBanque(PrintWriter out, Succursale s, interfaceBanque interfaceBanque) {
+	public EmissionBanque(PrintWriter out, SuccursaleBean s, interfaceBanque interfaceBanque) {
 		this.interfaceBanque = interfaceBanque;
 		this.out = out;
+		this.succursale = s;
 	}
 
 	public void run() {

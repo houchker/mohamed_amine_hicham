@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.SuccursaleBean;
+
 
 public class interfaceSuccursaleCreator extends JFrame {
 
@@ -71,9 +73,8 @@ public class interfaceSuccursaleCreator extends JFrame {
 					JOptionPane.showConfirmDialog(null, "Veuillez remplir les trois champs");
 					//return;
 				}else{
-					Thread t = new Thread(new Succursale(textFieldIP.getText(),
-							Integer.valueOf(textFieldPort.getText()),
-							Integer.valueOf(textFieldSolde.getText())));
+					Thread t = new Thread(new Succursale(new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
+							Integer.valueOf(textFieldSolde.getText()))));
 					t.start();
 				}
 			}
