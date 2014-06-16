@@ -20,23 +20,28 @@ public class Succursale implements Runnable {
 	private BufferedReader in;
 	private PrintWriter out;
 	private Socket echoSocket;
-	public SuccursaleBean getSuccursaleBean() {
-		return succursaleBean;
-	}
-
-	public void setSuccursaleBean(SuccursaleBean succursaleBean) {
-		this.succursaleBean = succursaleBean;
-	}
-
 
 	private interfaceSuccursale interfaceSuccursale;
 	private SuccursaleBean succursaleBean;
 	
+	public Succursale(SuccursaleBean succursaleBean) {
+		this.succursaleBean = succursaleBean;
+		interfaceSuccursale = new interfaceSuccursale(succursaleBean);
+	}
+	public SuccursaleBean getSuccursaleBean() {
+		return succursaleBean;
+	}
+
+
+
+	
 	public int getMontantDepart() {
+		montantDepart = succursaleBean.getMontantDepart();
 		return montantDepart;
 	}
 
 	public String getIp() {
+		ip = succursaleBean.getIp();
 		return ip;
 	}
 
@@ -45,6 +50,7 @@ public class Succursale implements Runnable {
 	}
 
 	public int getSolde() {
+		montant = succursaleBean.getSolde();
 		return montant;
 	}
 
@@ -52,12 +58,10 @@ public class Succursale implements Runnable {
 		this.montant = montantDepart;
 	}
 
-	public Succursale(SuccursaleBean succursaleBean2) {
-		this.succursaleBean = succursaleBean2;
-		interfaceSuccursale = new interfaceSuccursale(succursaleBean2);
-	}
+
 
 	public int getIdSucc() {
+		idSucc = succursaleBean.getIdSucc();
 		return idSucc;
 	}
 
@@ -66,6 +70,7 @@ public class Succursale implements Runnable {
 	}
 
 	public int getPortEcoute() {
+		port = succursaleBean.getPortEcoute();
 		return port;
 	}
 

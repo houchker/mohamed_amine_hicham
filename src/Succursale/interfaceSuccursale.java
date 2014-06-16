@@ -27,14 +27,16 @@ public class interfaceSuccursale extends JFrame {
 	private JTextField textFieldIP;
 	private JTextField textFieldPort;
 	private JTextField textFieldSoldeInit;
-	private SuccursaleBean succursale;
+	private SuccursaleBean succursaleBean;
 	public interfaceSuccursale(SuccursaleBean succursaleBean2) {
-		this.succursale = succursaleBean2;
+		this.succursaleBean = succursaleBean2;
 		initUI();
 	}
 
 	private void initUI() {
-
+		System.out.println(succursaleBean.toString());
+		System.out.println(succursaleBean.getIdSucc());
+		System.out.println(succursaleBean.getIdSucc());
 		model = new DefaultListModel();
 		JScrollPane pane = new JScrollPane();
 
@@ -48,16 +50,17 @@ public class interfaceSuccursale extends JFrame {
 		lblNewLabel.setBounds(25, 22, 134, 17);
 		panel.add(lblNewLabel);
 		
-		textFieldID = new JTextField();
-		textFieldID.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldID = new JTextField("" +succursaleBean.getIdSucc());
+		textFieldID.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldID.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldID.setEditable(false);
 		textFieldID.setBounds(169, 19, 46, 20);
-		panel.add(textFieldID);
-		textFieldID.setColumns(10);
 		
-		textFieldIP = new JTextField();
-		textFieldIP.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldID.setColumns(10);
+		panel.add(textFieldID);
+		
+		textFieldIP = new JTextField("" +succursaleBean.getIp());
+		textFieldIP.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldIP.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldIP.setEditable(false);
 		textFieldIP.setColumns(10);
@@ -69,7 +72,7 @@ public class interfaceSuccursale extends JFrame {
 		lblAdresseIp.setBounds(25, 52, 134, 17);
 		panel.add(lblAdresseIp);
 		
-		textFieldPort = new JTextField();
+		textFieldPort = new JTextField("" +succursaleBean.getPortEcoute());
 		textFieldPort.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldPort.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldPort.setEditable(false);
@@ -82,7 +85,7 @@ public class interfaceSuccursale extends JFrame {
 		label_1.setBounds(25, 83, 134, 17);
 		panel.add(label_1);
 		
-		textFieldSoldeInit = new JTextField();
+		textFieldSoldeInit = new JTextField("" +succursaleBean.getSolde());
 		textFieldSoldeInit.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldSoldeInit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldSoldeInit.setEditable(false);
@@ -115,10 +118,10 @@ public class interfaceSuccursale extends JFrame {
 	}
 
 	public void refesh() {
-	textFieldID.setText(String.valueOf(succursale.getIdSucc()));
-	textFieldIP.setText(succursale.getIp());
-	textFieldPort.setText(String.valueOf(succursale.getPortEcoute()));
-	textFieldSoldeInit.setText(String.valueOf(succursale.getMontantDepart()));
+	textFieldID.setText(String.valueOf(succursaleBean.getIdSucc()));
+	textFieldIP.setText(succursaleBean.getIp());
+	textFieldPort.setText(String.valueOf(succursaleBean.getPortEcoute()));
+	textFieldSoldeInit.setText(String.valueOf(succursaleBean.getMontantDepart()));
 		
 	}
 }

@@ -15,6 +15,7 @@ public class BanqueO {
 		succursales = new ArrayList<SuccursaleBean>();
 	}
 	public synchronized void AddSuccursale(SuccursaleBean s){
+		
 		succursales.add(s);
 		interfaceBanque.updateSuccursalesList(succursales);
 		System.out.println("AddSuccursale" + s.toString());

@@ -73,8 +73,11 @@ public class interfaceSuccursaleCreator extends JFrame {
 					JOptionPane.showConfirmDialog(null, "Veuillez remplir les trois champs");
 					//return;
 				}else{
-					Thread t = new Thread(new Succursale(new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
-							Integer.valueOf(textFieldSolde.getText()))));
+					SuccursaleBean succBean =new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
+							Integer.valueOf(textFieldSolde.getText())); 
+					
+					System.out.println(succBean.getMontantDepart());
+					Thread t = new Thread(new Succursale(succBean));
 					t.start();
 				}
 			}
@@ -93,7 +96,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 		lblMontantInitial.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblMontantInitial.setBounds(48, 112, 99, 27);
 		panel.add(lblMontantInitial);
-		setTitle("Créer succursale.");
+		setTitle("Créer succursale");
 		setSize(401, 233);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
