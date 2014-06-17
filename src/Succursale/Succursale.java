@@ -1,4 +1,6 @@
 package Succursale;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +13,7 @@ import SuccursaleConnexionBanque.GestionnaireConnexionSuccursaleBanque;
 import Util.Cts;
 
 
-public class Succursale implements Runnable {
+public class Succursale implements ActionListener  {
 
 	private int idSucc;
 	private int port;
@@ -24,10 +26,13 @@ public class Succursale implements Runnable {
 
 	private interfaceSuccursale interfaceSuccursale;
 	private SuccursaleBean succursaleBean;
+	private GestionnaireConnexionSuccursaleBanque g;
+	private GestionnaireConnexionSuccursaleBanque gestionnaireConnexionSuccursaleBanque;
 	
 	public Succursale(SuccursaleBean succursaleBean) {
 		this.succursaleBean = succursaleBean;
 		interfaceSuccursale = new interfaceSuccursale(succursaleBean);
+		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this);
 	}
 	public SuccursaleBean getSuccursaleBean() {
 		return succursaleBean;
@@ -88,12 +93,11 @@ public class Succursale implements Runnable {
 	}
 
 
+
 	@Override
-	public void run() {
+	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		ServerSocket socket;
-		Thread t = new Thread(new GestionnaireConnexionSuccursaleBanque(this));
-		t.start();
+		
 	}
 
 

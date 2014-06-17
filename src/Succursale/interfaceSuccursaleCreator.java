@@ -75,10 +75,8 @@ public class interfaceSuccursaleCreator extends JFrame {
 				}else{
 					SuccursaleBean succBean =new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
 							Integer.valueOf(textFieldSolde.getText())); 
-					
 					System.out.println(succBean.getMontantDepart());
-					Thread t = new Thread(new Succursale(succBean));
-					t.start();
+					new Succursale(succBean);
 				}
 			}
 		});

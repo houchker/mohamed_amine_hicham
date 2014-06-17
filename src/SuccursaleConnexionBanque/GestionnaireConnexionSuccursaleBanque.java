@@ -23,29 +23,9 @@ public class GestionnaireConnexionSuccursaleBanque implements Runnable {
 
 	public GestionnaireConnexionSuccursaleBanque(Succursale succursale2){
 		succursale = succursale2;
+		run();
 	}
 	public void run() {
-		//
-		//		try {
-		//			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		//			out = new PrintWriter(socket.getOutputStream());
-		//			String commandLine;
-		//			SuccursaleO s = null;
-		//			while ((commandLine = in.readLine()) != null){
-		//				String[] succursaleCommandes = commandLine.split("#");
-		//				int commandeType = Integer.valueOf(succursaleCommandes[0]);
-		//				switch (commandeType){
-		//				case Cts.AJOUT_SUCCURSALE :
-		//					s = new SuccursaleO(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3]));
-		//					int idS = BanqueO.getInstance().AddSuccursale(s);
-		//					s.setIdSucc(idS);
-		//					out.println (Cts.NEWIDSUCC+"#"+idS);
-		//					break;
-		//				default:
-		//					System.out.println("Commande introuvable!");
-		//
-		//				}
-		//			}
 
 		try {
 			socket = new Socket( Cts.BANQUE_ADRESSE_IP, Cts.BANQUE_PORT);
@@ -68,15 +48,11 @@ public class GestionnaireConnexionSuccursaleBanque implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		Thread t3 = new Thread(new ReceptionSuccursaleBanque(in,login , succursale));
 		t3.start();
 		Thread t4 = new Thread(new EmissionSuccursaleBanque(out, succursale));
 		t4.start();
 
-
-
-		//		} catch (IOException e) {
-		//			System.err.println(login +"s'est déconnecté ");
-		//		}
 	}
 }
