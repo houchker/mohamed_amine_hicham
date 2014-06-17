@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import model.SuccursaleBean;
 import Banque.interfaceBanque;
+import SuccursaleConnexionBanque.GestionnaireConnexionSuccursaleBanque;
 import Util.Cts;
 
 
@@ -32,10 +33,7 @@ public class Succursale implements Runnable {
 		return succursaleBean;
 	}
 
-
-
-	
-	public int getMontantDepart() {
+/*	public int getMontantDepart() {
 		montantDepart = succursaleBean.getMontantDepart();
 		return montantDepart;
 	}
@@ -76,13 +74,13 @@ public class Succursale implements Runnable {
 
 	public void setPortEcoute(int portEcoute) {
 		this.port = portEcoute;
-	}
+	}*/
 
 	public String toString() {
-		return "ID Succ : " + getIdSucc() + "| Port:" + getPortEcoute() + "| Montant Ini:" + getMontantDepart() + "| Solde:"+getSolde();
+		return "ID Succ :" + succursaleBean.getIdSucc() + "|Port:" + succursaleBean.getPortEcoute() + "|Montant Ini:" + succursaleBean.getMontantDepart() + "| Solde:"+succursaleBean.getSolde();
 	}
 	public String toString2() {
-		return "ID Succ:" + getIdSucc() + "|Port:" + getPortEcoute();
+		return "ID Succ:" + succursaleBean.getIdSucc() + "|Port:" + succursaleBean.getPortEcoute();
 	}
 	
 	public interfaceSuccursale getInterfaceSuccursale() {
@@ -94,13 +92,8 @@ public class Succursale implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		ServerSocket socket;
-		try {
-		echoSocket = new Socket( Cts.BANQUE_ADRESSE_IP, Cts.BANQUE_PORT);
-		Thread t = new Thread(new GestionnaireConnexionSuccursaleBanque(echoSocket, this));
+		Thread t = new Thread(new GestionnaireConnexionSuccursaleBanque(this));
 		t.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 

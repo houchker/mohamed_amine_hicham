@@ -1,9 +1,10 @@
-package Succursale;
+package SuccursaleConnexionSuccursale;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 import model.BanqueO;
+import Succursale.Succursale;
 import Util.Cts;
 
 

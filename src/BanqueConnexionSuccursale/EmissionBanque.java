@@ -1,9 +1,11 @@
-package Banque;
+package BanqueConnexionSuccursale;
 
+import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 import model.SuccursaleBean;
+import Banque.interfaceBanque;
 import Succursale.Succursale;
 
 
@@ -14,22 +16,21 @@ public class EmissionBanque implements Runnable {
 	private Scanner sc = null;
 	private interfaceBanque interfaceBanque;
 	private SuccursaleBean succursale;
+	private BufferedReader in;
 	
-	public EmissionBanque(PrintWriter out, SuccursaleBean s, interfaceBanque interfaceBanque) {
+	public EmissionBanque(PrintWriter out, BufferedReader in, interfaceBanque interfaceBanque) {
 		this.interfaceBanque = interfaceBanque;
+		this.in = in;
 		this.out = out;
-		this.succursale = s;
 	}
 
 	public void run() {
 		
-		  sc = new Scanner(System.in);
-		  
-		  while(true){
-			    System.out.println("Votre message :");
-				message = sc.nextLine();
-				out.println(message);
-			    out.flush();
-			  }
+	}
+	
+
+	public void EnvoyerMessage(String message){
+		out.println(message);  
+		out.flush();
 	}
 }

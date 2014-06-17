@@ -1,8 +1,9 @@
-package Succursale;
+package SuccursaleConnexionBanque;
 
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import Succursale.Succursale;
 import Util.Cts;
 
 
@@ -19,7 +20,7 @@ public class EmissionSuccursaleBanque implements Runnable {
 	}
 
 	public void run() {
-		out.println(Cts.AJOUT_SUCCURSALE+"#"+succursale.getIp()+"#"+succursale.getPortEcoute()+"#"+succursale.getMontantDepart());  
+		out.println(Cts.AJOUT_SUCCURSALE+"#"+succursale.getSuccursaleBean().getIp()+"#"+succursale.getSuccursaleBean().getPortEcoute()+"#"+succursale.getSuccursaleBean().getMontantDepart());  
 		out.flush();
 	}
 

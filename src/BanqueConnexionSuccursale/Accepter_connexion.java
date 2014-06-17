@@ -1,7 +1,9 @@
-package Banque;
+package BanqueConnexionSuccursale;
 
 import java.io.*;
 import java.net.*;
+
+import Banque.interfaceBanque;
 
 
 public class Accepter_connexion implements Runnable{
@@ -22,8 +24,7 @@ public class Accepter_connexion implements Runnable{
 			while(true){
 			socket = socketserver.accept();
 			System.out.println("Une succursale s'est connectée");
-			t1 = new Thread(new GestionnaireConnexionBanque(socket,interfaceBanque));
-			t1.start();
+			new GestionnaireConnexionBanque(socket,interfaceBanque);
 			}
 		} catch (IOException e) {
 			

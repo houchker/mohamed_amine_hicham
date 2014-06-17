@@ -1,8 +1,9 @@
-package Succursale;
+package SuccursaleConnexionBanque;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import Succursale.Succursale;
 import Util.Cts;
 
 
@@ -26,9 +27,9 @@ public class ReceptionSuccursaleBanque implements Runnable {
 				int commandeType = Integer.valueOf(succursaleCommandes[0]);
 				switch (commandeType){
 				case Cts.NEWIDSUCC :
-					System.out.println("ID Recu");
+					System.out.println("NEWIDSUCC!");
 					succursale.getSuccursaleBean().setIdSucc(Integer.valueOf(succursaleCommandes[1]));
-					succursale.getSuccursaleBean().getInterfaceSuccursale().refesh();
+					succursale.getInterfaceSuccursale().refesh();
 					break;
 				default:
 					System.out.println("Commande introuvable!");

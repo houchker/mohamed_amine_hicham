@@ -1,7 +1,9 @@
-package Succursale;
+package SuccursaleConnexionSuccursale;
 
 import java.io.PrintWriter;
 import java.util.Scanner;
+
+import Succursale.Succursale;
 
 
 public class EmissionSuccursaleSuccursale implements Runnable {

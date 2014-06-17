@@ -57,7 +57,9 @@ public class interfaceBanque extends JFrame {
 		setSize(596, 373);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocation(0, 0);
 		setVisible(true);
+
 		
 	}
 	
