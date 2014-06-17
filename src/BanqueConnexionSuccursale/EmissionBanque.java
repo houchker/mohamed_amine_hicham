@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import model.SuccursaleBean;
 import Banque.interfaceBanque;
-import Succursale.Succursale;
 
 
 public class EmissionBanque implements Runnable {

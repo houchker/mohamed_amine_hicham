@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.SuccursaleBean;
-import Succursale.Succursale;
 
 
 public class interfaceBanque extends JFrame {
@@ -22,8 +21,8 @@ public class interfaceBanque extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static interfaceBanque instance;
-	JList list;
-	DefaultListModel model;
+	JList<String> list;
+	DefaultListModel<String> model;
 	private JLabel TotalLabel;
 	public interfaceBanque() {
 
@@ -32,14 +31,14 @@ public class interfaceBanque extends JFrame {
 
 	private void initUI() {
 		
-		model = new DefaultListModel();
+		model = new DefaultListModel<String>();
 	    JScrollPane pane = new JScrollPane();
 	    
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
 		panel.setToolTipText("A Panel container");
 		panel.setLayout(null);
-		list = new JList(model);
+		list = new JList<String>(model);
 		list.setBounds(0, 30, 574, 258);
 		panel.add(list);
 		
