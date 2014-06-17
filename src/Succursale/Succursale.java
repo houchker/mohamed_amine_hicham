@@ -31,7 +31,7 @@ public class Succursale implements ActionListener  {
 	
 	public Succursale(SuccursaleBean succursaleBean) {
 		this.succursaleBean = succursaleBean;
-		interfaceSuccursale = new interfaceSuccursale(succursaleBean);
+		interfaceSuccursale = new interfaceSuccursale(succursaleBean, this);
 		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this);
 	}
 	public SuccursaleBean getSuccursaleBean() {
@@ -97,7 +97,7 @@ public class Succursale implements ActionListener  {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Bonjour");
 	}
 
 
