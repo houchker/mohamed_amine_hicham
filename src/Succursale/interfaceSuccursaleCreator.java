@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.BanqueO;
 import model.SuccursaleBean;
 
 
@@ -25,7 +26,9 @@ public class interfaceSuccursaleCreator extends JFrame {
 	private JTextField textFieldIP;
 	private JTextField textFieldPort;
 	private JTextField textFieldSolde;
-	public interfaceSuccursaleCreator() {
+	private Banque.interfaceBanque interfaceBanque = null;
+	public interfaceSuccursaleCreator(Banque.interfaceBanque interfaceBanque) {
+		this.interfaceBanque = interfaceBanque ;
 		initUI();
 	}
 
@@ -75,8 +78,12 @@ public class interfaceSuccursaleCreator extends JFrame {
 				}else{
 					SuccursaleBean succBean =new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
 							Integer.valueOf(textFieldSolde.getText())); 
-					System.out.println(succBean.getMontantDepart());
-					new Succursale(succBean);
+					//System.out.println(succBean.getMontantDepart());
+					Succursale 	succursaleBean = new Succursale(succBean);
+					BanqueO banque = BanqueO.getInstance(interfaceBanque);
+					
+					succursaleBean.getInterfaceSuccursale().updateSuccursalesList(banque.getSuccursales());
+					
 				}
 			}
 		});

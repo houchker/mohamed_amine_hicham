@@ -13,9 +13,9 @@ public class Accepter_connexion implements Runnable{
 
 	public Thread t1;
 	private interfaceBanque interfaceBanque;
-	public Accepter_connexion(ServerSocket ss){
+	public Accepter_connexion(ServerSocket ss , interfaceBanque interfaceBanque){
 	 socketserver = ss;
-	 interfaceBanque = new interfaceBanque();
+	 this.interfaceBanque = interfaceBanque ;
 	}
 	
 	public void run() {

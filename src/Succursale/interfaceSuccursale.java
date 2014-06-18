@@ -120,7 +120,7 @@ public class interfaceSuccursale extends JFrame {
 		lblSoldeActuel.setBounds(25, 146, 134, 17);
 		panel.add(lblSoldeActuel);
 		
-		JList list = new JList();
+		JList list = new JList(model);
 		list.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		list.setBounds(373, 21, 238, 227);
 		panel.add(list);
@@ -168,9 +168,9 @@ public class interfaceSuccursale extends JFrame {
 
 	}
 
-	public void updateSuccursalesList(ArrayList<Succursale> succursales){
+	public void updateSuccursalesList(ArrayList<SuccursaleBean> arrayList){
 		model.clear();
-		for(Succursale s : succursales)
+		for(SuccursaleBean s : arrayList)
 			model.addElement(s.toString());
 
 	}

@@ -14,17 +14,19 @@ public class BanqueO {
 		this.interfaceBanque = interfaceBanque;
 		succursales = new ArrayList<SuccursaleBean>();
 	}
+	
 	public synchronized void AddSuccursale(SuccursaleBean s){
 		
 		succursales.add(s);
 		interfaceBanque.updateSuccursalesList(succursales);
-		System.out.println("AddSuccursale" + s.toString());
+		//System.out.println("AddSuccursale" + s.toString());
 	}
 
 	public int getCounter(){
 		return count ++;
 	}
 	public synchronized ArrayList<SuccursaleBean> getSuccursales(){
+		
 		return succursales;
 	}
 	public static BanqueO getInstance (interfaceBanque interfaceBanque){

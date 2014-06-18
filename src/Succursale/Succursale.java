@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import model.BanqueO;
 import model.SuccursaleBean;
 import Banque.interfaceBanque;
 import SuccursaleConnexionBanque.GestionnaireConnexionSuccursaleBanque;
@@ -23,7 +24,6 @@ public class Succursale implements ActionListener  {
 	private BufferedReader in;
 	private PrintWriter out;
 	private Socket echoSocket;
-
 	private interfaceSuccursale interfaceSuccursale;
 	private SuccursaleBean succursaleBean;
 	private GestionnaireConnexionSuccursaleBanque g;
@@ -32,6 +32,8 @@ public class Succursale implements ActionListener  {
 	public Succursale(SuccursaleBean succursaleBean) {
 		this.succursaleBean = succursaleBean;
 		interfaceSuccursale = new interfaceSuccursale(succursaleBean, this);
+		
+		
 		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this);
 	}
 	public SuccursaleBean getSuccursaleBean() {

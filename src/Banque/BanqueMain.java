@@ -10,13 +10,14 @@ import Util.Cts;
 public class BanqueMain {
 
 	public static void main(String[] args) throws InterruptedException {
+		interfaceBanque interfaceBanque =  new interfaceBanque();
 		ServerSocket socket;
 		try {
 		socket = new ServerSocket(Cts.BANQUE_PORT);
-		Thread t = new Thread(new Accepter_connexion(socket));
+		Thread t = new Thread(new Accepter_connexion(socket , interfaceBanque));
 		t.start();
 		System.out.println("Le serveur de la banque est pret pour accepter les connexions !");
-		new interfaceSuccursaleCreator();
+		new interfaceSuccursaleCreator(interfaceBanque);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
