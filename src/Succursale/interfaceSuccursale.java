@@ -39,6 +39,7 @@ public class interfaceSuccursale extends JFrame {
 	private JTextField textField;
 	private ActionListener controller;
 	private JTextField textField_1;
+	private JList list;
 	public interfaceSuccursale(SuccursaleBean succursaleBean2, ActionListener  controller) {
 		this.succursaleBean = succursaleBean2;
 		this.controller = controller;
@@ -120,7 +121,7 @@ public class interfaceSuccursale extends JFrame {
 		lblSoldeActuel.setBounds(25, 146, 134, 17);
 		panel.add(lblSoldeActuel);
 		
-		JList list = new JList(model);
+		list = new JList(model);
 		list.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		list.setBounds(373, 21, 238, 227);
 		panel.add(list);
@@ -168,10 +169,16 @@ public class interfaceSuccursale extends JFrame {
 
 	}
 
-	public void updateSuccursalesList(ArrayList<SuccursaleBean> arrayList){
-		model.clear();
-		for(SuccursaleBean s : arrayList)
-			model.addElement(s.toString());
+	public void updateSuccursalesList(ArrayList<SuccursaleBean> succursales){
+		System.out.println(succursaleBean.getIdSucc() +  ":succursales" + succursales.size());
+		model.removeAllElements();
+		for(SuccursaleBean s : succursales){
+			//System.out.println("Compare:Old=" + s.getIdSucc() + "-TO:" + succursaleBean.getIdSucc());
+			model.addElement(s.toString2());
+			//System.out.println("Model :" + s.toString2());
+		}
+
+		
 
 	}
 

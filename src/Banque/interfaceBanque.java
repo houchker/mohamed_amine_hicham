@@ -80,12 +80,7 @@ public class interfaceBanque extends JFrame {
 	public void setMontantTotal(int v){
 		TotalLabel.setText("Somme totale d\u2019argent : " + v + " $");
 	}
-	
-	public static interfaceBanque getInstance(){
-		if(instance ==null)
-				new interfaceBanque();
-		return instance;
-	}
+
 	
 	
 }

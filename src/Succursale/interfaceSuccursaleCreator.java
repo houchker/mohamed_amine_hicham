@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.BanqueO;
 import model.SuccursaleBean;
 
 
@@ -26,9 +25,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 	private JTextField textFieldIP;
 	private JTextField textFieldPort;
 	private JTextField textFieldSolde;
-	private Banque.interfaceBanque interfaceBanque = null;
-	public interfaceSuccursaleCreator(Banque.interfaceBanque interfaceBanque) {
-		this.interfaceBanque = interfaceBanque ;
+	public interfaceSuccursaleCreator() {
 		initUI();
 	}
 
@@ -79,11 +76,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 					SuccursaleBean succBean =new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
 							Integer.valueOf(textFieldSolde.getText())); 
 					//System.out.println(succBean.getMontantDepart());
-					Succursale 	succursaleBean = new Succursale(succBean);
-					BanqueO banque = BanqueO.getInstance(interfaceBanque);
-					
-					succursaleBean.getInterfaceSuccursale().updateSuccursalesList(banque.getSuccursales());
-					
+					new Succursale(succBean);
 				}
 			}
 		});
@@ -101,11 +94,12 @@ public class interfaceSuccursaleCreator extends JFrame {
 		lblMontantInitial.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblMontantInitial.setBounds(48, 112, 99, 27);
 		panel.add(lblMontantInitial);
-		setTitle("Créer succursale");
+		setTitle("CrÃ©er succursale");
 		setSize(401, 233);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 
 	}
+
 }

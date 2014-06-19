@@ -18,7 +18,7 @@ public class EmissionBanque implements Runnable {
 	private SuccursaleBean succursale;
 	private BufferedReader in;
 	
-	public EmissionBanque(PrintWriter out, BufferedReader in, interfaceBanque interfaceBanque) {
+	public EmissionBanque(PrintWriter out, BufferedReader in, interfaceBanque interfaceBanque, GestionnaireConnexionBanque gestionnaireConnexionBanque) {
 		this.interfaceBanque = interfaceBanque;
 		this.in = in;
 		this.out = out;

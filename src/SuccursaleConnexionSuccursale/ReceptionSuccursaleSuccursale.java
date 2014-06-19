@@ -20,7 +20,6 @@ public class ReceptionSuccursaleSuccursale implements Runnable {
 	}
 	
 	public void run() {
-		
 		String commandLine;
 		try {
 			while ((commandLine = in.readLine()) != null){

@@ -18,20 +18,21 @@ public class ReceptionBanque implements Runnable {
 	private interfaceBanque interfaceBanque;
 	private Object succursale;
 	private PrintWriter out;
+	private GestionnaireConnexionBanque getGestionnaireConnexion;
 	
-	public ReceptionBanque(PrintWriter out, BufferedReader in, interfaceBanque interfaceBanque){
+	public ReceptionBanque(PrintWriter out, BufferedReader in, interfaceBanque interfaceBanque, GestionnaireConnexionBanque gestionnaireConnexionBanque){
 		this.out = out;
 		this.interfaceBanque = interfaceBanque;
 		this.in = in;
+		this.getGestionnaireConnexion = gestionnaireConnexionBanque;
 	}
 	
-	
-
 	public void run() {
 		
 		String commandLine;
 		try {
 			while ((commandLine = in.readLine()) != null){
+				
 				String[] succursaleCommandes = commandLine.split("#");
 				int commandeType = Integer.valueOf(succursaleCommandes[0]);
 				
@@ -39,11 +40,11 @@ public class ReceptionBanque implements Runnable {
 				case Cts.AJOUT_SUCCURSALE :
 					SuccursaleBean s;
 					s = new SuccursaleBean(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3]));
-					s.setIdSucc(BanqueO.getInstance(interfaceBanque).getCounter());
-					BanqueO.getInstance(interfaceBanque).AddSuccursale(s);
-					System.out.println("ID succu new " + s.toString());
+					s.setIdSucc(BanqueO.getInstance().getCounter());
+					getGestionnaireConnexion.setSuccursale(s);
 					out.println (Cts.NEWIDSUCC+"#"+s.getIdSucc());
 					out.flush();
+					getGestionnaireConnexion.getConnexionEcouteur().informerLesSuccursales(s);
 					break;
 				default:
 					System.out.println("Commande introuvable!");

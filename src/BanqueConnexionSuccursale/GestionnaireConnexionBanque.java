@@ -20,28 +20,45 @@ public class GestionnaireConnexionBanque {
 	private PrintWriter out = null;
 	private String login = "zero";
 	private Thread t3, t4;
-	private interfaceBanque interfaceBanque;
+	private interfaceBanque interfaceBanque;	
+	private SuccursaleBean succursale = null;
+	private ConnexionEcouteur connexionEcouteur;
 	
-	
-	public GestionnaireConnexionBanque(Socket s, interfaceBanque interfaceBanque){
+
+	public GestionnaireConnexionBanque(Socket s, interfaceBanque interfaceBanque, ConnexionEcouteur connexionEcouteur){
+		
 		this.interfaceBanque =  interfaceBanque;
 		this.socket = s;
+		this.connexionEcouteur = connexionEcouteur;
 		try {
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream());
-		String commandLine;
 
-		Thread t3 = new Thread(new ReceptionBanque(out , in,interfaceBanque ));
+		Thread t3 = new Thread(new ReceptionBanque(out , in,interfaceBanque , this ));
 		t3.start();
-		Thread t4 = new Thread(new EmissionBanque(out, in, interfaceBanque));
+		Thread t4 = new Thread(new EmissionBanque(out, in, interfaceBanque, this));
 		t4.start();
 		
 		} catch (IOException e) {
 			System.err.println(login +"s'est déconnecté ");
 		}
-	}
-	public void run() {
 		
+	}
+	
+	public void SendMessage(String message){
+		out.println(message);  
+		out.flush();
+	}
 
-}
+	public void setSuccursale(SuccursaleBean s) {
+		succursale = s;
+	}
+	public ConnexionEcouteur getConnexionEcouteur() {
+		return connexionEcouteur;
+	}
+
+	public SuccursaleBean getSuccursale() {
+		return succursale;
+	}
+	
 }

@@ -45,6 +45,13 @@ public class SuccursaleBean {
 		this.montant = montantDepart;
 	}
 
+	public SuccursaleBean(int id, String ip, int portEcoute, int montantDepart) {
+		this.ip = ip;
+		this.idSucc = id;
+		this.port = portEcoute;
+		this.montantDepart = montantDepart;
+		this.montant = montantDepart;
+	}
 
 	public int getIdSucc() {
 		return idSucc;
