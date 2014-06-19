@@ -71,7 +71,7 @@ public class Succursale implements ActionListener  {
 			}
 		}
 			succursaleBeanList.add(s);
-			gestionnaireConnexionSuccursaleSuccursaleList.add(new GestionnaireConnexionSuccursaleSuccursale(this, s)); 		
+		//	gestionnaireConnexionSuccursaleSuccursaleList.add(new GestionnaireConnexionSuccursaleSuccursale(this, s)); 		
 			refrechInterface();	
 		}
 
