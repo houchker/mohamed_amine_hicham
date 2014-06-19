@@ -4,27 +4,29 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 import Succursale.Succursale;
+import Util.Cts;
 
 
 public class EmissionSuccursaleSuccursale implements Runnable {
 
+
 	private PrintWriter out;
 	private String message = null;
 	private Scanner sc = null;
-	
-	public EmissionSuccursaleSuccursale(PrintWriter out, Succursale s) {
+	private Succursale succursale;
+
+	public EmissionSuccursaleSuccursale(PrintWriter out, Succursale succursale2) {
+		succursale = succursale2;
 		this.out = out;
 	}
 
 	public void run() {
-		
-		  sc = new Scanner(System.in);
-		  
-		  while(true){
-			    System.out.println("Votre message :");
-				message = sc.nextLine();
-				out.println(message);
-			    out.flush();
-			  }
+		out.println(Cts.AJOUT_SUCCURSALE+"#"+succursale.getSuccursaleBean().getIp()+"#"+succursale.getSuccursaleBean().getPortEcoute()+"#"+succursale.getSuccursaleBean().getMontantDepart());  
+		out.flush();
+	}
+
+	public void EnvoyerMessage(String message){
+		out.println(message);  
+		out.flush();
 	}
 }

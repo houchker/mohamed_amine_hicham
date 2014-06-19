@@ -160,9 +160,15 @@ public class interfaceSuccursale extends JFrame {
 		btnEnvoyer.addActionListener(controller);
 		btnEnvoyer.setBounds(251, 11, 89, 47);
 		panel_1.add(btnEnvoyer);
+		
+		JLabel labelErreur = new JLabel("");
+		labelErreur.setForeground(Color.RED);
+		labelErreur.setFont(new Font("Tahoma", Font.BOLD, 10));
+		labelErreur.setBounds(0, 278, 611, 16);
+		panel.add(labelErreur);
 		getContentPane().add(pane, BorderLayout.NORTH);
 		setTitle("Tooltip");
-		setSize(637, 300);
+		setSize(637, 334);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);

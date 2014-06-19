@@ -49,7 +49,7 @@ public class GestionnaireConnexionSuccursaleBanque implements Runnable {
 			e.printStackTrace();
 		}
 		
-		Thread t3 = new Thread(new ReceptionSuccursaleBanque(in,login , succursale));
+		Thread t3 = new Thread(new ReceptionSuccursaleBanque(in, succursale));
 		t3.start();
 		Thread t4 = new Thread(new EmissionSuccursaleBanque(out, succursale));
 		t4.start();

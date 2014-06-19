@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 import model.SuccursaleBean;
 
+import java.awt.Color;
+
 
 public class interfaceSuccursaleCreator extends JFrame {
 
@@ -25,6 +27,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 	private JTextField textFieldIP;
 	private JTextField textFieldPort;
 	private JTextField textFieldSolde;
+	private JLabel labelError;
 	public interfaceSuccursaleCreator() {
 		initUI();
 	}
@@ -67,16 +70,27 @@ public class interfaceSuccursaleCreator extends JFrame {
 		JButton btnNewButton = new JButton("Cr\u00E9er Succursale");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				showError("");
 				if((textFieldIP.getText().toString().trim()=="") || 
 						(textFieldPort.getText().toString().trim()=="") ||
 						(textFieldSolde.getText().toString().trim()=="")){
-					JOptionPane.showConfirmDialog(null, "Veuillez remplir les trois champs");
+					showError("Veuillez remplir les trois champs");
 					//return;
 				}else{
+					if(!isInteger(textFieldPort.getText())){
+						showError("Port doit etre entier et positif");
+						return;
+					}
+					if(!isInteger(textFieldSolde.getText())){ 
+						showError("Montant initial doit etre entier et positif");
+						return;
+					}
 					SuccursaleBean succBean =new SuccursaleBean(textFieldIP.getText(),  Integer.valueOf(textFieldPort.getText()),
 							Integer.valueOf(textFieldSolde.getText())); 
 					//System.out.println(succBean.getMontantDepart());
 					new Succursale(succBean);
+					textFieldPort.setText(""+(Integer.valueOf(textFieldPort.getText())+1)) ;
+
 				}
 			}
 		});
@@ -85,7 +99,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 		panel.add(btnNewButton);
 
 		textFieldSolde = new JTextField();
-		textFieldSolde.setText("20");
+		textFieldSolde.setText("200");
 		textFieldSolde.setColumns(10);
 		textFieldSolde.setBounds(152, 113, 57, 27);
 		panel.add(textFieldSolde);
@@ -94,12 +108,37 @@ public class interfaceSuccursaleCreator extends JFrame {
 		lblMontantInitial.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblMontantInitial.setBounds(48, 112, 99, 27);
 		panel.add(lblMontantInitial);
+
+		labelError = new JLabel("");
+		labelError.setForeground(Color.RED);
+		labelError.setFont(new Font("Tahoma", Font.BOLD, 10));
+		labelError.setBounds(10, 193, 365, 16);
+		panel.add(labelError);
 		setTitle("Créer succursale");
-		setSize(401, 233);
+		setSize(401, 247);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 
+	}
+
+
+	public static boolean isInteger(String s) {
+		int i=-1;
+		try { 
+			i = Integer.parseInt(s); 
+			if(i<0)
+				return false;
+		} catch(NumberFormatException e) { 
+			return false; 
+		}
+
+
+		return true;
+	}
+
+	private void showError(String s){
+		labelError.setText(s);
 	}
 
 }

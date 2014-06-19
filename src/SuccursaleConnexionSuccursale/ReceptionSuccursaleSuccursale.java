@@ -13,7 +13,7 @@ public class ReceptionSuccursaleSuccursale implements Runnable {
 	private BufferedReader in;
 	private String message = null, login = null;
 	
-	public ReceptionSuccursaleSuccursale(BufferedReader in, String login, Succursale s){
+	public ReceptionSuccursaleSuccursale(BufferedReader in, Succursale s){
 		
 		this.in = in;
 		this.login = login;

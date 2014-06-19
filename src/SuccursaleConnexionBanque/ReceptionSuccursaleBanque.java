@@ -14,10 +14,9 @@ public class ReceptionSuccursaleBanque implements Runnable {
 	private String message = null, login = null;
 	private Succursale succursale;
 
-	public ReceptionSuccursaleBanque(BufferedReader in, String login, Succursale succursale2){
+	public ReceptionSuccursaleBanque(BufferedReader in,Succursale succursale2){
 		this.succursale = succursale2;
 		this.in = in;
-		this.login = login;
 	}
 
 	public void run() {

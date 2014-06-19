@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import model.SuccursaleBean;
 import Banque.interfaceBanque;
 import SuccursaleConnexionBanque.GestionnaireConnexionSuccursaleBanque;
+import SuccursaleConnexionSuccursale.GestionnaireConnexionSuccursaleSuccursale;
 import Util.Cts;
 
 
@@ -27,8 +28,9 @@ public class Succursale implements ActionListener  {
 
 	private interfaceSuccursale interfaceSuccursale;
 	private SuccursaleBean succursaleBean;
+	private ArrayList<GestionnaireConnexionSuccursaleSuccursale> gestionnaireConnexionSuccursaleSuccursaleList;
 	private ArrayList<SuccursaleBean> succursaleBeanList;
-
+	
 	private GestionnaireConnexionSuccursaleBanque g;
 	private GestionnaireConnexionSuccursaleBanque gestionnaireConnexionSuccursaleBanque;
 
@@ -37,6 +39,7 @@ public class Succursale implements ActionListener  {
 		interfaceSuccursale = new interfaceSuccursale(succursaleBean, this);
 		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this);
 		succursaleBeanList = new ArrayList<SuccursaleBean>();
+		gestionnaireConnexionSuccursaleSuccursaleList = new ArrayList<GestionnaireConnexionSuccursaleSuccursale>();
 	}
 	public SuccursaleBean getSuccursaleBean() {
 		return succursaleBean;
@@ -68,6 +71,7 @@ public class Succursale implements ActionListener  {
 			}
 		}
 			succursaleBeanList.add(s);
+			gestionnaireConnexionSuccursaleSuccursaleList.add(new GestionnaireConnexionSuccursaleSuccursale(this, s)); 		
 			refrechInterface();	
 		}
 
