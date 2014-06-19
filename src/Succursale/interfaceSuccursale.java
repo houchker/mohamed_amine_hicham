@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,12 +16,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import model.SuccursaleBean;
+
 import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
 import java.awt.event.ActionEvent;
 
 
@@ -30,7 +35,9 @@ public class interfaceSuccursale extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	DefaultListModel model;
+	DefaultListModel   listModel;
+	DefaultComboBoxModel<Integer> comboModel ;
+	
 	private JTextField textFieldID;
 	private JTextField textFieldIP;
 	private JTextField textFieldPort;
@@ -38,7 +45,7 @@ public class interfaceSuccursale extends JFrame {
 	private SuccursaleBean succursaleBean;
 	private JTextField textField;
 	private ActionListener controller;
-	private JTextField textField_1;
+	private JTextField textMontantTransfer;
 	private JList list;
 	public interfaceSuccursale(SuccursaleBean succursaleBean2, ActionListener  controller) {
 		this.succursaleBean = succursaleBean2;
@@ -47,7 +54,9 @@ public class interfaceSuccursale extends JFrame {
 	}
 
 	private void initUI() {
-		model = new DefaultListModel();
+		comboModel = new DefaultComboBoxModel<Integer>();
+		listModel = new DefaultListModel ();
+		//model = new DefaultListModel();
 		JScrollPane pane = new JScrollPane();
 
 		JPanel panel = new JPanel();
@@ -121,7 +130,7 @@ public class interfaceSuccursale extends JFrame {
 		lblSoldeActuel.setBounds(25, 146, 134, 17);
 		panel.add(lblSoldeActuel);
 		
-		list = new JList(model);
+		list = new JList(listModel);
 		list.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		list.setBounds(373, 21, 238, 227);
 		panel.add(list);
@@ -137,24 +146,26 @@ public class interfaceSuccursale extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(132, 11, 86, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		textMontantTransfer = new JTextField();
+		textMontantTransfer.setBounds(132, 11, 86, 20);
+		panel_1.add(textMontantTransfer);
+		textMontantTransfer.setColumns(10);
 		
 		JLabel lblMontantTransfert = new JLabel("Montant transfert : ");
 		lblMontantTransfert.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblMontantTransfert.setBounds(10, 13, 112, 17);
 		panel_1.add(lblMontantTransfert);
 		
-		JLabel lblSuccursale = new JLabel("Succursale : ");
+		JLabel lblSuccursale = new JLabel("ID Succursale : ");
 		lblSuccursale.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSuccursale.setBounds(10, 41, 112, 17);
 		panel_1.add(lblSuccursale);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(132, 39, 86, 20);
-		panel_1.add(comboBox);
+		JComboBox succBox = new JComboBox();
+		succBox.setBounds(132, 39, 86, 20);
+		succBox.setModel(comboModel);
+		System.out.println("");
+		panel_1.add(succBox);
 		
 		JButton btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.addActionListener(controller);
@@ -177,13 +188,13 @@ public class interfaceSuccursale extends JFrame {
 
 	public void updateSuccursalesList(ArrayList<SuccursaleBean> succursales){
 		System.out.println(succursaleBean.getIdSucc() +  ":succursales" + succursales.size());
-		model.removeAllElements();
+		listModel.removeAllElements();
+		comboModel.removeAllElements();
 		for(SuccursaleBean s : succursales){
 			//System.out.println("Compare:Old=" + s.getIdSucc() + "-TO:" + succursaleBean.getIdSucc());
-			model.addElement(s.toString2());
-			//System.out.println("Model :" + s.toString2());
+			listModel.addElement(s.toString2());
+			comboModel.addElement(s.getIdSucc());
 		}
-
 		
 
 	}
@@ -198,5 +209,9 @@ public class interfaceSuccursale extends JFrame {
 	textFieldPort.setText(String.valueOf(succursaleBean.getPortEcoute()));
 	textFieldSoldeInit.setText(String.valueOf(succursaleBean.getMontantDepart()));
 		
+	}
+	public int getmontantTransfert(){
+		
+		return Integer.parseInt(textMontantTransfer.getText());
 	}
 }
