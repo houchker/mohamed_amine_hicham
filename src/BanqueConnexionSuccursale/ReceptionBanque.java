@@ -41,6 +41,8 @@ public class ReceptionBanque implements Runnable {
 					SuccursaleBean s;
 					s = new SuccursaleBean(succursaleCommandes[1], Integer.valueOf(succursaleCommandes[2]), Integer.valueOf(succursaleCommandes[3]));
 					s.setIdSucc(BanqueO.getInstance().getCounter());
+					BanqueO.getInstance().getSuccursales().add(s);
+					interfaceBanque.updateSuccursalesList(BanqueO.getInstance().getSuccursales());
 					getGestionnaireConnexion.setSuccursale(s);
 					out.println (Cts.NEWIDSUCC+"#"+s.getIdSucc());
 					out.flush();

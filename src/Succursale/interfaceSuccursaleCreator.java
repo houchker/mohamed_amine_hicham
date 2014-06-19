@@ -117,7 +117,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 		setTitle("Créer succursale");
 		setSize(401, 247);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 
 	}

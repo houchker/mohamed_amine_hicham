@@ -170,7 +170,7 @@ public class interfaceSuccursale extends JFrame {
 		setTitle("Tooltip");
 		setSize(637, 334);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 
 	}
