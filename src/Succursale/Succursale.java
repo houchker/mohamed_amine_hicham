@@ -40,6 +40,7 @@ public class Succursale implements ActionListener  {
 		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this);
 		succursaleBeanList = new ArrayList<SuccursaleBean>();
 		gestionnaireConnexionSuccursaleSuccursaleList = new ArrayList<GestionnaireConnexionSuccursaleSuccursale>();
+		
 	}
 	public SuccursaleBean getSuccursaleBean() {
 		return succursaleBean;
@@ -58,7 +59,8 @@ public class Succursale implements ActionListener  {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Bonjour");
+		//System.out.println("Bonjour");
+		doTransfer();
 	}
 	public void addSuccusale(SuccursaleBean s) {
 		System.out.println("i m " + succursaleBean.getIdSucc() +  " Called to add :" + s.getIdSucc() );
@@ -77,6 +79,14 @@ public class Succursale implements ActionListener  {
 
 	private void refrechInterface() {
 		interfaceSuccursale.updateSuccursalesList(succursaleBeanList);
+	}
+	
+	public void doTransfer(){
+//		for(GestionnaireConnexionSuccursaleSuccursale ges : gestionnaireConnexionSuccursaleSuccursaleList){
+//			System.out.println(ges.toString());
+//		}
+		System.out.println("succursale destination est" + interfaceSuccursale.getmontantTransfert().getIdSuccursale());
+		System.out.println("montant a envoyer est" + interfaceSuccursale.getmontantTransfert().getMontant());
 	}
 
 

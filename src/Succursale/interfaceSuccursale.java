@@ -26,6 +26,8 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import Util.Transfer;
+
 import java.awt.event.ActionEvent;
 
 
@@ -47,6 +49,7 @@ public class interfaceSuccursale extends JFrame {
 	private ActionListener controller;
 	private JTextField textMontantTransfer;
 	private JList list;
+	private JComboBox succBox ;
 	public interfaceSuccursale(SuccursaleBean succursaleBean2, ActionListener  controller) {
 		this.succursaleBean = succursaleBean2;
 		this.controller = controller;
@@ -161,7 +164,7 @@ public class interfaceSuccursale extends JFrame {
 		lblSuccursale.setBounds(10, 41, 112, 17);
 		panel_1.add(lblSuccursale);
 		
-		JComboBox succBox = new JComboBox();
+		succBox = new JComboBox();
 		succBox.setBounds(132, 39, 86, 20);
 		succBox.setModel(comboModel);
 		System.out.println("");
@@ -210,8 +213,9 @@ public class interfaceSuccursale extends JFrame {
 	textFieldSoldeInit.setText(String.valueOf(succursaleBean.getMontantDepart()));
 		
 	}
-	public int getmontantTransfert(){
-		
-		return Integer.parseInt(textMontantTransfer.getText());
+	
+	public Transfer getmontantTransfert(){
+		System.out.println((Integer)(succBox.getSelectedItem()));
+		return new Transfer(Integer.parseInt(textMontantTransfer.getText()), (Integer)(succBox.getSelectedItem()));
 	}
 }
