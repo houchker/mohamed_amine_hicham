@@ -215,7 +215,8 @@ public class interfaceSuccursale extends JFrame {
 	}
 	
 	public Transfer getmontantTransfert(){
-		System.out.println((Integer)(succBox.getSelectedItem()));
-		return new Transfer(Integer.parseInt(textMontantTransfer.getText()), (Integer)(succBox.getSelectedItem()));
+
+		return new Transfer(Integer.parseInt(textMontantTransfer.getText()), Integer.valueOf(textFieldID.getText().toString()),Integer.valueOf(succBox.getSelectedItem().toString()));
+	
 	}
 }

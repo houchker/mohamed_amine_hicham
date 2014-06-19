@@ -82,10 +82,8 @@ public class Succursale implements ActionListener  {
 	}
 	
 	public void doTransfer(){
-//		for(GestionnaireConnexionSuccursaleSuccursale ges : gestionnaireConnexionSuccursaleSuccursaleList){
-//			System.out.println(ges.toString());
-//		}
-		System.out.println("succursale destination est" + interfaceSuccursale.getmontantTransfert().getIdSuccursale());
+		System.out.println("succursale sender est" + interfaceSuccursale.getmontantTransfert().getIdSuccursaleSender());
+		System.out.println("succursale destination est" + interfaceSuccursale.getmontantTransfert().getIdSuccursaleDestination());
 		System.out.println("montant a envoyer est" + interfaceSuccursale.getmontantTransfert().getMontant());
 	}
 
