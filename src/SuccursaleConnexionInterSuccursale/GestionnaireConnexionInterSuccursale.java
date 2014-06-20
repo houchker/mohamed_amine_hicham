@@ -1,4 +1,4 @@
-package SuccursaleConnexionBanque;
+package SuccursaleConnexionInterSuccursale;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,19 +11,19 @@ import Succursale.Succursale;
 import Util.Cts;
 
 
-public class GestionnaireConnexionSuccursaleBanque implements Runnable {
+public class GestionnaireConnexionInterSuccursale implements Runnable {
 
 	private Socket socket = null;
 	private BufferedReader in = null;
 	private PrintWriter out = null;
-	private String login = "zero";
-	private Thread t3, t4;
 	private Succursale succursale;
 	private int port;
 	private String ip;
+	private ReceptionSuccursaleSuccursale receptionSuccursaleSuccursale;
+	private EmissionSuccursaleSuccursale emissionSuccursaleSuccursale;
 
 
-	public GestionnaireConnexionSuccursaleBanque(Succursale succursale2, String AdresseIp, int Port){
+	public GestionnaireConnexionInterSuccursale(Succursale succursale2, String AdresseIp, int Port){
 		succursale = succursale2;
 		this.ip = AdresseIp;
 		this.port = Port;
@@ -53,12 +53,14 @@ public class GestionnaireConnexionSuccursaleBanque implements Runnable {
 			e.printStackTrace();
 		}
 		
-		Thread t3 = new Thread(new ReceptionSuccursaleBanque(in, succursale));
+		Thread t3 = new Thread(receptionSuccursaleSuccursale = new ReceptionSuccursaleSuccursale(in, succursale));
 		t3.start();
-		Thread t4 = new Thread(new EmissionSuccursaleBanque(out, succursale));
+		Thread t4 = new Thread(emissionSuccursaleSuccursale = new EmissionSuccursaleSuccursale(out, succursale));
 		t4.start();
-
 	}
 	
+	public void EnvoyerMessage(String message){
+			emissionSuccursaleSuccursale.EnvoyerMessage(message);
+	}
 	
 }

@@ -7,16 +7,13 @@ import java.io.PrintWriter;
 import model.BanqueO;
 import model.SuccursaleBean;
 import Banque.interfaceBanque;
-import Succursale.Succursale;
 import Util.Cts;
 
 
 public class ReceptionBanque implements Runnable {
 
 	private BufferedReader in;
-	private String message = null, login = null;
 	private interfaceBanque interfaceBanque;
-	private Object succursale;
 	private PrintWriter out;
 	private GestionnaireConnexionBanque getGestionnaireConnexion;
 	

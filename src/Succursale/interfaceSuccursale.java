@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -26,9 +25,8 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-import Util.Transfer;
-
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 
 public class interfaceSuccursale extends JFrame {
@@ -45,11 +43,13 @@ public class interfaceSuccursale extends JFrame {
 	private JTextField textFieldPort;
 	private JTextField textFieldSoldeInit;
 	private SuccursaleBean succursaleBean;
-	private JTextField textField;
+	private JTextField textSolde;
 	private ActionListener controller;
 	private JTextField textMontantTransfer;
 	private JList list;
-	private JComboBox succBox ;
+	private JComboBox succBox;
+	private DefaultListModel listModelMessages;
+	private JLabel labelErreur;
 	public interfaceSuccursale(SuccursaleBean succursaleBean2, ActionListener  controller) {
 		this.succursaleBean = succursaleBean2;
 		this.controller = controller;
@@ -59,8 +59,8 @@ public class interfaceSuccursale extends JFrame {
 	private void initUI() {
 		comboModel = new DefaultComboBoxModel<Integer>();
 		listModel = new DefaultListModel ();
+		listModelMessages  = new DefaultListModel ();
 		//model = new DefaultListModel();
-		JScrollPane pane = new JScrollPane();
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
@@ -86,12 +86,12 @@ public class interfaceSuccursale extends JFrame {
 		textFieldIP.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldIP.setEditable(false);
 		textFieldIP.setColumns(10);
-		textFieldIP.setBounds(169, 49, 101, 20);
+		textFieldIP.setBounds(169, 39, 101, 20);
 		panel.add(textFieldIP);
 		
 		JLabel lblAdresseIp = new JLabel("Adresse IP :");
 		lblAdresseIp.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAdresseIp.setBounds(25, 52, 134, 17);
+		lblAdresseIp.setBounds(25, 42, 134, 17);
 		panel.add(lblAdresseIp);
 		
 		textFieldPort = new JTextField("" +succursaleBean.getPortEcoute());
@@ -99,12 +99,12 @@ public class interfaceSuccursale extends JFrame {
 		textFieldPort.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldPort.setEditable(false);
 		textFieldPort.setColumns(10);
-		textFieldPort.setBounds(169, 80, 46, 20);
+		textFieldPort.setBounds(169, 59, 46, 20);
 		panel.add(textFieldPort);
 		
 		JLabel label_1 = new JLabel("Port d'ecoute :");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(25, 83, 134, 17);
+		label_1.setBounds(25, 62, 134, 17);
 		panel.add(label_1);
 		
 		textFieldSoldeInit = new JTextField("" +succursaleBean.getSolde());
@@ -112,30 +112,30 @@ public class interfaceSuccursale extends JFrame {
 		textFieldSoldeInit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textFieldSoldeInit.setEditable(false);
 		textFieldSoldeInit.setColumns(10);
-		textFieldSoldeInit.setBounds(169, 112, 65, 20);
+		textFieldSoldeInit.setBounds(169, 79, 65, 20);
 		panel.add(textFieldSoldeInit);
 		
 		JLabel lblSoldeInitial = new JLabel("Solde initial : ");
 		lblSoldeInitial.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSoldeInitial.setBounds(25, 115, 134, 17);
+		lblSoldeInitial.setBounds(25, 82, 134, 17);
 		panel.add(lblSoldeInitial);
 		
-		textField = new JTextField("0");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(169, 143, 65, 20);
-		panel.add(textField);
+		textSolde = new JTextField("0");
+		textSolde.setHorizontalAlignment(SwingConstants.CENTER);
+		textSolde.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textSolde.setEditable(false);
+		textSolde.setColumns(10);
+		textSolde.setBounds(169, 99, 65, 20);
+		panel.add(textSolde);
 		
 		JLabel lblSoldeActuel = new JLabel("Solde actuel : ");
 		lblSoldeActuel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSoldeActuel.setBounds(25, 146, 134, 17);
+		lblSoldeActuel.setBounds(25, 102, 134, 17);
 		panel.add(lblSoldeActuel);
 		
 		list = new JList(listModel);
 		list.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		list.setBounds(373, 21, 238, 227);
+		list.setBounds(373, 21, 238, 158);
 		panel.add(list);
 		
 		JLabel lblListeDesSuccursales = new JLabel("Liste des succursales li\u00E9es :");
@@ -145,7 +145,7 @@ public class interfaceSuccursale extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		panel_1.setBounds(10, 174, 349, 74);
+		panel_1.setBounds(9, 122, 349, 58);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -161,28 +161,36 @@ public class interfaceSuccursale extends JFrame {
 		
 		JLabel lblSuccursale = new JLabel("ID Succursale : ");
 		lblSuccursale.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSuccursale.setBounds(10, 41, 112, 17);
+		lblSuccursale.setBounds(10, 34, 112, 17);
 		panel_1.add(lblSuccursale);
 		
-		succBox = new JComboBox();
-		succBox.setBounds(132, 39, 86, 20);
-		succBox.setModel(comboModel);
+		succBox = new JComboBox(comboModel);
+		succBox.setBounds(132, 32, 86, 20);
 		System.out.println("");
 		panel_1.add(succBox);
 		
 		JButton btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.addActionListener(controller);
-		btnEnvoyer.setBounds(251, 11, 89, 47);
+		btnEnvoyer.setBounds(228, 11, 89, 40);
 		panel_1.add(btnEnvoyer);
 		
-		JLabel labelErreur = new JLabel("");
+		labelErreur = new JLabel("");
 		labelErreur.setForeground(Color.RED);
 		labelErreur.setFont(new Font("Tahoma", Font.BOLD, 10));
-		labelErreur.setBounds(0, 278, 611, 16);
+		labelErreur.setBounds(9, 363, 611, 16);
 		panel.add(labelErreur);
-		getContentPane().add(pane, BorderLayout.NORTH);
+		
+		JList list_1 = new JList(listModelMessages);
+		list_1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		list_1.setBounds(9, 198, 601, 164);
+		panel.add(list_1);
+		
+		JLabel lblHistoriqueDesTransferts = new JLabel("Historique des transferts re\u00E7us :");
+		lblHistoriqueDesTransferts.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblHistoriqueDesTransferts.setBounds(9, 182, 238, 17);
+		panel.add(lblHistoriqueDesTransferts);
 		setTitle("Tooltip");
-		setSize(637, 334);
+		setSize(637, 418);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
@@ -190,6 +198,7 @@ public class interfaceSuccursale extends JFrame {
 	}
 
 	public void updateSuccursalesList(ArrayList<SuccursaleBean> succursales){
+		refesh();
 		System.out.println(succursaleBean.getIdSucc() +  ":succursales" + succursales.size());
 		listModel.removeAllElements();
 		comboModel.removeAllElements();
@@ -198,12 +207,7 @@ public class interfaceSuccursale extends JFrame {
 			listModel.addElement(s.toString2());
 			comboModel.addElement(s.getIdSucc());
 		}
-		
-
-	}
-
-	public void setMontantTotal(int v){
-		//TotalLabel.setText("Somme totale d\u2019argent : " + v + " $");
+		showErrorMessage("");
 	}
 
 	public void refesh() {
@@ -211,12 +215,21 @@ public class interfaceSuccursale extends JFrame {
 	textFieldIP.setText(succursaleBean.getIp());
 	textFieldPort.setText(String.valueOf(succursaleBean.getPortEcoute()));
 	textFieldSoldeInit.setText(String.valueOf(succursaleBean.getMontantDepart()));
-		
+	textSolde.setText(String.valueOf(succursaleBean.getSolde()));
+	showErrorMessage("");
 	}
-	
-	public Transfer getmontantTransfert(){
+	public int getmontantTransfert(){
+		return Integer.parseInt(textMontantTransfer.getText());
+	}
+	public int getIdSuccForTransfer(){
+		return Integer.parseInt(succBox.getSelectedItem().toString());
+	}
 
-		return new Transfer(Integer.parseInt(textMontantTransfer.getText()), Integer.valueOf(textFieldID.getText().toString()),Integer.valueOf(succBox.getSelectedItem().toString()));
-	
+	public void addMessage(String string) {
+		listModelMessages.addElement(string);
 	}
+	public void showErrorMessage(String string) {
+		labelErreur.setText(string);
+	}
+
 }

@@ -2,16 +2,14 @@ package Succursale;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 import model.SuccursaleBean;
-import Banque.interfaceBanque;
+import model.Transfer;
 import SuccursaleConnexionBanque.GestionnaireConnexionSuccursaleBanque;
-import SuccursaleConnexionSuccursale.GestionnaireConnexionSuccursaleSuccursale;
+import SuccursaleConnexionInterSuccursale.GestionnaireConnexionInterSuccursale;
 import Util.Cts;
 
 
@@ -28,19 +26,17 @@ public class Succursale implements ActionListener  {
 
 	private interfaceSuccursale interfaceSuccursale;
 	private SuccursaleBean succursaleBean;
-	private ArrayList<GestionnaireConnexionSuccursaleSuccursale> gestionnaireConnexionSuccursaleSuccursaleList;
 	private ArrayList<SuccursaleBean> succursaleBeanList;
-	
+
 	private GestionnaireConnexionSuccursaleBanque g;
 	private GestionnaireConnexionSuccursaleBanque gestionnaireConnexionSuccursaleBanque;
+	private GestionnaireConnexionInterSuccursale gestionnaireConnexionSuccursaleSuccursale;
 
 	public Succursale(SuccursaleBean succursaleBean1) {
 		succursaleBean = succursaleBean1;
 		interfaceSuccursale = new interfaceSuccursale(succursaleBean, this);
-		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this);
+		gestionnaireConnexionSuccursaleBanque = new GestionnaireConnexionSuccursaleBanque(this, Cts.BANQUE_ADRESSE_IP, Cts.BANQUE_PORT);
 		succursaleBeanList = new ArrayList<SuccursaleBean>();
-		gestionnaireConnexionSuccursaleSuccursaleList = new ArrayList<GestionnaireConnexionSuccursaleSuccursale>();
-		
 	}
 	public SuccursaleBean getSuccursaleBean() {
 		return succursaleBean;
@@ -59,8 +55,10 @@ public class Succursale implements ActionListener  {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//System.out.println("Bonjour");
-		doTransfer();
+		Transfer t = new Transfer(succursaleBean.getIdSucc()
+				, interfaceSuccursale.getIdSuccForTransfer(), 
+				interfaceSuccursale.getmontantTransfert());
+		setTransfer(t);
 	}
 	public void addSuccusale(SuccursaleBean s) {
 		System.out.println("i m " + succursaleBean.getIdSucc() +  " Called to add :" + s.getIdSucc() );
@@ -72,20 +70,58 @@ public class Succursale implements ActionListener  {
 				return;// exit if the succurasale already is on the list.
 			}
 		}
-			succursaleBeanList.add(s);
-		//	gestionnaireConnexionSuccursaleSuccursaleList.add(new GestionnaireConnexionSuccursaleSuccursale(this, s)); 		
-			refrechInterface();	
-		}
+		succursaleBeanList.add(s);
+		//gestionnaireConnexionSuccursaleSuccursale.addSuccursale(s);
+		//gestionnaireConnexionSuccursaleSuccursaleList.add(new GestionnaireConnexionSuccursaleSuccursale(this, s)); 		
+		refrechInterface();	
+	}
 
 	private void refrechInterface() {
 		interfaceSuccursale.updateSuccursalesList(succursaleBeanList);
 	}
-	
-	public void doTransfer(){
-		System.out.println("succursale sender est" + interfaceSuccursale.getmontantTransfert().getIdSuccursaleSender());
-		System.out.println("succursale destination est" + interfaceSuccursale.getmontantTransfert().getIdSuccursaleDestination());
-		System.out.println("montant a envoyer est" + interfaceSuccursale.getmontantTransfert().getMontant());
+
+	public SuccursaleBean getConnectedSuccursaleByID(int id){
+		for(SuccursaleBean s1 : succursaleBeanList){
+			if(id==s1.getIdSucc()){
+				return s1;
+			}
+		}
+		return null;
 	}
 
+	public void ConnectToInterm(){
+		if(gestionnaireConnexionSuccursaleSuccursale==null)
+			gestionnaireConnexionSuccursaleSuccursale = new GestionnaireConnexionInterSuccursale(this,Cts.INTERMEDIAIRE_ADRESSE_IP, Cts.INTERMEDIAIRE_PORT);
+	}
 
+	public void setTransfer(Transfer t) {
+
+		if(canTransfer(t)){
+			String message =Cts.TRANSFER_SUCCURSALE+"#" 
+					+ t.getFrom() + "#"
+					+ t.getTo() + "#"
+					+ t.getMontant();						
+			gestionnaireConnexionSuccursaleSuccursale.EnvoyerMessage(message);
+			succursaleBean.addSolde(-t.getMontant());
+			interfaceSuccursale.refesh();
+		}else{
+			interfaceSuccursale.showErrorMessage("Vous ne pouvez pas faire un transfert si votre solde est null ou le montant est supperieur a votre solde.");
+		}
+
+
+	} 
+
+	public void setTransferReceived(Transfer t) {
+		succursaleBean.addSolde(t.getMontant());
+		refrechInterface();
+		interfaceSuccursale.addMessage("Transfert recu : de " 
+				+ t.getFrom() + " (" + t.getMontant() +")");
+	} 
+
+	private boolean canTransfer(Transfer t){
+		if(succursaleBean.getSolde()>=t.getMontant() && succursaleBean.getSolde()> 0)
+			return true;
+
+		return false;
+	}
 }

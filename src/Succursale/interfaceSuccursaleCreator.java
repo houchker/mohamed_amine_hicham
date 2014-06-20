@@ -52,7 +52,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 		textFieldIP.setColumns(10);
 
 		textFieldPort = new JTextField();
-		textFieldPort.setText("9001");
+		textFieldPort.setText("9002");
 		textFieldPort.setColumns(10);
 		textFieldPort.setBounds(152, 75, 57, 27);
 		panel.add(textFieldPort);

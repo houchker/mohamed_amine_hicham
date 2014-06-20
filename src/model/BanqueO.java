@@ -10,6 +10,7 @@ import Util.Cts;
 import Banque.interfaceBanque;
 import BanqueConnexionSuccursale.ConnexionEcouteur;
 import BanqueConnexionSuccursale.GestionnaireConnexionBanque;
+import IntermediaireSuccursale.InterConnexionEcouteur;
 
 public class BanqueO {
 	private ArrayList<SuccursaleBean> succursales;
@@ -21,18 +22,16 @@ public class BanqueO {
 	public BanqueO(){
 		succursales = new ArrayList<SuccursaleBean>();
 		ServerSocket socket;
-		try {
-			//System.out.println("Ecoute");
-		socket = new ServerSocket(Cts.BANQUE_PORT);
 		new interfaceSuccursaleCreator();
-		ConnexionEcouteur = new ConnexionEcouteur(socket);
-		Thread t = new Thread(ConnexionEcouteur);
+
+		//ConnexionEcouteur = new ConnexionEcouteur();
+		Thread t = new Thread( new ConnexionEcouteur());
 		t.start();
-		System.out.println("Le serveur de la banque est pret pour accepter les connexions !");
 		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread t1 = new Thread( new InterConnexionEcouteur());
+		t1.start();
+	
+
 	}
 //	public synchronized void AddSuccursale(SuccursaleBean s){
 //		succursales.add(s);

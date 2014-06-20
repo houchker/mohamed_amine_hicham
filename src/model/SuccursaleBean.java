@@ -80,4 +80,8 @@ public class SuccursaleBean {
 		return interfaceSuccursale;
 	}
 
+	public void addSolde(int montant2) {
+		montant+=montant2;
+	}
+
 }

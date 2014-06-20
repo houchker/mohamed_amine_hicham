@@ -27,9 +27,9 @@ public class ReceptionSuccursaleBanque implements Runnable {
 				int commandeType = Integer.valueOf(commandes[0]);
 				switch (commandeType){
 				case Cts.NEWIDSUCC :
-					//System.out.println("NEWIDSUCC!");
 					succursale.getSuccursaleBean().setIdSucc(Integer.valueOf(commandes[1]));
 					succursale.getInterfaceSuccursale().refesh();
+					succursale.ConnectToInterm();
 					break;
 				case Cts.SUSCRIBE_SUCCURSALE :
 					SuccursaleBean s = new SuccursaleBean(Integer.valueOf(commandes[1])
