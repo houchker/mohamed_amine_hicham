@@ -10,5 +10,6 @@ public class Cts {
 	public static final int NEWIDSUCC = 1;
 	public static final int SUSCRIBE_SUCCURSALE = 2;
 	public static final int TRANSFER_SUCCURSALE = 3;
+	public static final int DELAYTRANSFER = 5;
 
 }

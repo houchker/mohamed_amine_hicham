@@ -16,7 +16,6 @@ import model.SuccursaleBean;
 
 import java.awt.Color;
 
-
 public class interfaceSuccursaleCreator extends JFrame {
 
 	/**
@@ -34,13 +33,12 @@ public class interfaceSuccursaleCreator extends JFrame {
 
 	private void initUI() {
 
-
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
 		panel.setToolTipText("A Panel container");
 		panel.setLayout(null);
 
-		JLabel lblListeDesSuccursales = new JLabel("Cr\u00E9ateur succursale :");
+		JLabel lblListeDesSuccursales = new JLabel("Créateur succursale :");
 		lblListeDesSuccursales.setBounds(10, 11, 174, 19);
 		lblListeDesSuccursales.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panel.add(lblListeDesSuccursales);
@@ -67,7 +65,7 @@ public class interfaceSuccursaleCreator extends JFrame {
 		lblPort.setBounds(112, 74, 35, 27);
 		panel.add(lblPort);
 
-		JButton btnNewButton = new JButton("Cr\u00E9er Succursale");
+		JButton btnNewButton = new JButton("Créer Succursale");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showError("");
@@ -114,14 +112,12 @@ public class interfaceSuccursaleCreator extends JFrame {
 		labelError.setFont(new Font("Tahoma", Font.BOLD, 10));
 		labelError.setBounds(10, 193, 365, 16);
 		panel.add(labelError);
-		setTitle("CrÃ©er succursale");
+		setTitle("Créer succursale");
 		setSize(401, 247);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
-
 	}
-
 
 	public static boolean isInteger(String s) {
 		int i=-1;
@@ -132,13 +128,10 @@ public class interfaceSuccursaleCreator extends JFrame {
 		} catch(NumberFormatException e) { 
 			return false; 
 		}
-
-
 		return true;
 	}
 
 	private void showError(String s){
 		labelError.setText(s);
 	}
-
 }

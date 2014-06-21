@@ -1,5 +1,7 @@
 package model;
 
+import java.io.PrintWriter;
+
 
 public class Transfer {
 
@@ -41,9 +43,24 @@ public class Transfer {
 	private int montant;
 	private int from;
 	private int to;
+	private int delaytransfer;
+	private PrintWriter out;
 
 	public String toString() {
 		return "Transfer : " + from + " To " + to + " (" + montant + ")";
 	}
-
+	public void setDelay(int delaytransfer1) {
+		this.delaytransfer = delaytransfer1;
+	}
+	public int getDelay() {
+		return this.delaytransfer;
+	}
+	public void setOuter(PrintWriter out) {
+		this.out = out;
+		
+	}
+	public PrintWriter getOuter() {
+		return out;
+	}
+	
 }

@@ -97,11 +97,7 @@ public class Succursale implements ActionListener  {
 	public void setTransfer(Transfer t) {
 
 		if(canTransfer(t)){
-			String message =Cts.TRANSFER_SUCCURSALE+"#" 
-					+ t.getFrom() + "#"
-					+ t.getTo() + "#"
-					+ t.getMontant();						
-			gestionnaireConnexionSuccursaleSuccursale.EnvoyerMessage(message);
+			gestionnaireConnexionSuccursaleSuccursale.EnvoyerTransfert(t); 
 			succursaleBean.addSolde(-t.getMontant());
 			interfaceSuccursale.refesh();
 		}else{
@@ -119,9 +115,8 @@ public class Succursale implements ActionListener  {
 	} 
 
 	private boolean canTransfer(Transfer t){
-		if(succursaleBean.getSolde()>=t.getMontant() && succursaleBean.getSolde()> 0)
+		if(succursaleBean.getSolde()>=t.getMontant() && succursaleBean.getSolde()> 0 && t.getMontant() > 0 )
 			return true;
-
 		return false;
 	}
 }

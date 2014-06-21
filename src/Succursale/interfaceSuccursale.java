@@ -34,6 +34,7 @@ public class interfaceSuccursale extends JFrame {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	DefaultListModel   listModel;
 	DefaultComboBoxModel<Integer> comboModel ;

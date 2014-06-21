@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import model.Transfer;
 import Succursale.Succursale;
+import SuccursaleConnexionSuccursale.Timerschedule;
 import Util.Cts;
 
 
@@ -62,5 +64,11 @@ public class GestionnaireConnexionInterSuccursale implements Runnable {
 	public void EnvoyerMessage(String message){
 			emissionSuccursaleSuccursale.EnvoyerMessage(message);
 	}
+
+	public void EnvoyerTransfert(Transfer t){
+		t.setDelay(Cts.DELAYTRANSFER);
+		t.setOuter(out);
+		Timerschedule.getInstance().addTransferDo(t);
+}
 	
 }
