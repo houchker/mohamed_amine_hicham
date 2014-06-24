@@ -43,11 +43,11 @@ public class Transfer {
 	private int montant;
 	private int from;
 	private int to;
-	private int delaytransfer;
+	private int delaytransfer = -1;
 	private PrintWriter out;
 
 	public String toString() {
-		return "Transfer : " + from + " To " + to + " (" + montant + ")";
+		return "Transfert recu de la succursale " + from + " pour le compte " + to + " (" + montant + ")";
 	}
 	public void setDelay(int delaytransfer1) {
 		this.delaytransfer = delaytransfer1;

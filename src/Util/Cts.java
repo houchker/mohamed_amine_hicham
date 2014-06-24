@@ -11,5 +11,7 @@ public class Cts {
 	public static final int SUSCRIBE_SUCCURSALE = 2;
 	public static final int TRANSFER_SUCCURSALE = 3;
 	public static final int DELAYTRANSFER = 5;
+	public static final int AUTOMATIQUE_TRANSFERT_MONTANT = 50;
+	public static final int AUTOMATIQUE_TRANSFERT_PERIODE = 5000;
 
 }

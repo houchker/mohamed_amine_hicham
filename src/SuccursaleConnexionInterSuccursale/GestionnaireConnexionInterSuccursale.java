@@ -53,21 +53,21 @@ public class GestionnaireConnexionInterSuccursale implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Thread t3 = new Thread(receptionSuccursaleSuccursale = new ReceptionSuccursaleSuccursale(in, succursale));
 		t3.start();
 		Thread t4 = new Thread(emissionSuccursaleSuccursale = new EmissionSuccursaleSuccursale(out, succursale));
 		t4.start();
 	}
-	
+
 	public void EnvoyerMessage(String message){
-			emissionSuccursaleSuccursale.EnvoyerMessage(message);
+		emissionSuccursaleSuccursale.EnvoyerMessage(message);
 	}
 
 	public void EnvoyerTransfert(Transfer t){
 		t.setDelay(Cts.DELAYTRANSFER);
 		t.setOuter(out);
 		Timerschedule.getInstance().addTransferDo(t);
-}
-	
+	}
+
 }
