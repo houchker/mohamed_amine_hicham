@@ -1,4 +1,4 @@
-package SuccursaleConnexionSuccursale;
+package SuccursaleConnexionInterSuccursale;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,8 +21,6 @@ public class Timerschedule {
 		TimerTask tache = new TimerTask() {    
 			@Override
 			public void run() {
-
-
 
 				for (Iterator<Transfer> it = transferList.iterator(); it.hasNext(); ) {
 					Transfer t = it.next();

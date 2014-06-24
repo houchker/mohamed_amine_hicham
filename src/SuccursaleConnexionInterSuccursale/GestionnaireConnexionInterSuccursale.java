@@ -9,7 +9,6 @@ import java.net.UnknownHostException;
 
 import model.Transfer;
 import Succursale.Succursale;
-import SuccursaleConnexionSuccursale.Timerschedule;
 import Util.Cts;
 
 
