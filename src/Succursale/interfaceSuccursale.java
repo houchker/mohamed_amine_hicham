@@ -181,10 +181,13 @@ public class interfaceSuccursale extends JFrame {
 		labelErreur.setBounds(9, 363, 611, 16);
 		panel.add(labelErreur);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(9, 198, 601, 164);
+		panel.add(scrollPane);
+		
 		JList list_1 = new JList(listModelMessages);
+		scrollPane.setViewportView(list_1);
 		list_1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		list_1.setBounds(9, 198, 601, 164);
-		panel.add(list_1);
 		
 		JLabel lblHistoriqueDesTransferts = new JLabel("Historique des transferts re\u00E7us :");
 		lblHistoriqueDesTransferts.setFont(new Font("Tahoma", Font.BOLD, 11));
